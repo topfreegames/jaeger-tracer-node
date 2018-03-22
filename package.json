@@ -1,0 +1,36 @@
+{
+  "name": "jaeger-tracer-node",
+  "version": "1.0.0",
+  "description": "Jaeger node client extended with implicit context propagation and external library patches",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/topfreegames/jaeger-tracer-node.git"
+  },
+  "keywords": [
+    "jaeger",
+    "node"
+  ],
+  "author": "Victor Andrade de Almeida",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/topfreegames/jaeger-tracer-node/issues"
+  },
+  "homepage": "https://github.com/topfreegames/jaeger-tracer-node#readme",
+  "dependencies": {
+    "jaeger-client": "^3.10.0",
+    "opentracing": "^0.14.1",
+    "tfg-event-context": "^0.5.6"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}
