@@ -26,6 +26,9 @@ jaeger.configure({
 ## Advanced Usage
 In case there is need for manually creating spans, two aproaches exist for referencing the parent.
 
+Notice that the spans need to be propagated in order for the patched libraries to know which is the current span.
+Also, if your custom code sends requests to other servers, the span can be injected into a carrier for transmission.
+
 ### Using a span carrier
 This carrier can be something similar to an HTTP header or `null`.
 
@@ -34,13 +37,14 @@ let span = jaeger.startSpan(carrier, 'my-span', {
   'my-tag': 'my-value'
 })
 
-myFunctionWithCallback(request, err => {
-  span.finish(err)
+span.propagate(() => {
+  mySynchronousFunction(request)
 })
+span.finish()
 ```
 
 ### Using the current span
-If the code sends requests to other servers, the span can be injected into a carrier for transmission.
+The current span will never be `null`, so no check is needed. However, if it is not set, the new span will lack a parent.
 
 ```javascript
 let parent = jaeger.currentSpan()
@@ -48,6 +52,7 @@ let span = parent.startSpan('my-span')
 
 span.inject(myCarrier)
 
-mySynchronousFunction(myCarrier)
-span.finish()
+myFunctionWithCallback(myCarrier, err => {
+  span.finish(err)
+})
 ```
