@@ -1,6 +1,6 @@
 {
   "name": "jaeger-tracer-node",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Jaeger node client extended with implicit context propagation and external library patches",
   "main": "index.js",
   "scripts": {
